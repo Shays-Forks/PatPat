@@ -23,6 +23,7 @@ mossyDependencies {
 		override("mossyCompileOnly", "searchables")
 		override("mossyCompileOnly", "cloth-config")
 		override("mossyCompileOnly", "geckolib")
+		override("mossyCompileOnly", "proxlib")
 
 		disable("fabric-permissions-api")
 	}
@@ -47,6 +48,11 @@ dependencies {
 		}
 
 		testImplementation("net.fabricmc:fabric-loader-junit:${prop("build.fabric_loader")}")
+
+		def proxlibVersion = prop("dep.proxlib")
+		if (proxlibVersion != "unknown") {
+			mossyInclude(mossyImplementation("maven.modrinth:proxlib:${proxlibVersion}"))
+		}
 	}
 }
 
