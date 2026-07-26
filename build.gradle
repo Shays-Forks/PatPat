@@ -17,8 +17,9 @@ mossyDependencies {
 	parchment = prop("build.parchment")
 
 	additional {
-		override("modCompileOnly", "flashback")
-		override("modCompileOnly", "replaymod")
+		override("mossyCompileOnly", "flashback")
+		override("mossyCompileOnly", "replaymod")
+		override("mossyCompileOnly", "proxlib")
 		//override("modCompileOnly", "iris")
 
 		disable("fabric-permissions-api")
@@ -44,6 +45,11 @@ dependencies {
 	}
 
 	testImplementation("net.fabricmc:fabric-loader-junit:${prop("build.fabric_loader")}")
+
+	def proxlibVersion = prop("dep.proxlib")
+	if (proxlibVersion != "unknown") {
+		include(implementation("maven.modrinth:proxlib:${proxlibVersion}"))
+	}
 }
 
 stonecutter {
